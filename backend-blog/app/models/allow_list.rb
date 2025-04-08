@@ -1,0 +1,3 @@
+class AllowList < ApplicationRecord
+  
+end
