@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { AuthContext } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Users = () => {
   
   const [users, setUsers] = useState([])
-
+  
   const fetchUsers = async () => {
     try {
       const response = await axios.get(`${import.meta.env.VITE_BASE_URL}registrations`)

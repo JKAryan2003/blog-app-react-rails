@@ -8,6 +8,7 @@ import Users from './components/Users';
 import { AuthProvider } from './context/AuthContext';
 import axios from 'axios';
 import { useState } from 'react';
+import Protected from './components/Protected';
 
 const setHeader = (token) => {
   if (token) {
@@ -27,7 +28,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/users" element={<Users />} />
+            <Route path="/users" element={<Protected Component={Users} />}  />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LogIn setTok={setTok}/>} />
           </Routes>
