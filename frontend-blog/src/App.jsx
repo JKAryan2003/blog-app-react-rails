@@ -11,13 +11,12 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <NavBar />
         <Routes>
-          <Route path="/" element={<NavBar />}>
-            <Route index element={<Home />} />
-            <Route path="users" element={<Users />} />
-            <Route path="register" element={<Register />} />
-            <Route path="login" element={<LogIn />} />
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<LogIn />} />
         </Routes>
       </BrowserRouter>
     </>
