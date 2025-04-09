@@ -9,16 +9,19 @@ module Api
         
         if @user && @user.authenticate(params[:user][:password])   
           salt = SecureRandom.hex(16)
+          expires_at = 24.hour.from_now
           payload = {
             user_id: @user.id,
             email: @user.email,
-            salt: salt 
+            salt: salt,
+            expires_at: expires_at.to_i
           }
           token = JsonWebToken.encode(payload)
 
           AllowList.create(
             token: token,
-            salt: salt
+            salt: salt,
+            expires_at: expires_at
           )
           render json: {user: @user, token: token, message: "Logged in successfully"}
         else
