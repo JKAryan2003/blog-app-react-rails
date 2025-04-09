@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthContext';
 
-const LogIn = () => {
+const LogIn = ({setTok}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useContext(AuthContext)
@@ -14,7 +14,7 @@ const LogIn = () => {
         password: password,
       }
     }
-    login(input)
+    login(input,setTok)
   }
 
   return (
