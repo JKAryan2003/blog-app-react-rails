@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :registrations
       resources :sessions
+      post '/logout', to: 'sessions#logout'
     end
   end
 end

@@ -6,8 +6,6 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const url = 'http://127.0.0.1:3000/api/v1/registrations'
-
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -18,7 +16,7 @@ const Register = () => {
           password: password,
         }
       }
-      const response = await axios.post(url, input)
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}registrations`, input)
       console.log(response.data)
     }
     catch(error) {

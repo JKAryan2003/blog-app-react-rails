@@ -7,7 +7,6 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate()
   const [token, setToken] = useState(localStorage.getItem('token'));
-  const url = "http://127.0.0.1:3000/api/v1/sessions"
 
   useEffect(() => {
     if (token) {
@@ -19,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (input) => {
     try {
-      const response = await axios.post(url, input);
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}sessions`, input);
       console.log(response.data.token)
       setToken(response.data.token);
       console.log(token)
@@ -30,10 +29,28 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    setToken(null);
-    localStorage.removeItem('token');
-    navigate('/login')
+  const logout = async () => {
+    try {
+      const header_token = localStorage.getItem('token')
+      console.log(header_token)
+      
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}logout`, {}, {
+        headers: {
+          Authorization: `Bearer ${header_token}`
+        }
+      })
+      
+      if (response) {
+        setToken(null)
+        localStorage.removeItem('token');
+        navigate('/login')
+      }
+      console.log(response)
+    }
+    catch(error) {
+      console.error('Login failed:', error);
+    }
+    
   };
 
   return (

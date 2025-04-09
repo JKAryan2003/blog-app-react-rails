@@ -9,6 +9,7 @@ const NavBar = () => {
   const handleClick = () => {
     logout()
   }
+  
   return (
     <div>
       {token ? 
