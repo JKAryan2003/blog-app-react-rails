@@ -18,34 +18,42 @@ const LogIn = ({setTok}) => {
   }
 
   return (
-    // <div>
-    //   <Box display="flex" flexDirection={"column"} maxWidth={400} alignItems={"center"} justifyContent={"center"} margin={"auto"} marginTop={5}>
-    //       <Typography variant='h3'>Log In</Typography>
-    //       <TextField type={"email"} value={email} placeholder='Email' margin='normal' onChange={handleEmail}></TextField>
-    //       <TextField type={"password"} value={password} placeholder='Password' margin='normal' onChange={handlePassword}></TextField>
-    //       <Button variant='contained' margin='normal' onClick={() => handleSubmit(email, password)}>Log In</Button>
-    //     </Box>
-    // </div>
+    <>
+      <div className='d-flex flex-column align-items-center vw-100 vh-100'>
+        <h2 className='p-5'>Log In</h2>
+        <div className='w-50 h-50 m-5 shadow p-5 bg-body-tertiary rounded'>
+          <form onSubmit={handleSubmit} className='d-flex flex-column '>
 
-    <div>
-      <h2>Log In</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Log In</button>
-      </form>
-    </div>
+            <div className='p-4'>
+              <input 
+                type="email"   
+                class="form-control" 
+                placeholder="Email" 
+                aria-label="Email" aria-describedby="basic-addon1"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+              />
+            </div>
 
+            <div className='p-4'>
+              <input 
+                type="password"   
+                class="form-control" 
+                placeholder="Password" 
+                aria-label="Password" aria-describedby="basic-addon1"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <div className='p-4 text-center'>
+              <button type="submit" className='btn btn-info'>Log In</button>
+            </div>
+
+          </form> 
+        </div>
+      </div>
+    </>
   )
 }
 

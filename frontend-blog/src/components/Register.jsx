@@ -30,29 +30,49 @@ const Register = () => {
   }
 
   return (
-    <div>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Signup</button>
-      </form>
+    <div className='d-flex flex-column align-items-center vw-100 vh-100'>
+      <h2 className='p-5'>Sign Up</h2>
+      <div className='w-50 h-50 m-5 shadow p-5 bg-body-tertiary rounded'>
+        <form onSubmit={handleSubmit} className='d-flex flex-column '>
+
+          <div className='p-4'>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <div className='p-4'>
+            <input 
+              type="email"   
+              class="form-control" 
+              placeholder="Email" 
+              aria-label="Email" aria-describedby="basic-addon1"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)} 
+            />
+          </div>
+
+          <div className='p-4'>
+            <input 
+              type="password"   
+              class="form-control" 
+              placeholder="Password" 
+              aria-label="Password" aria-describedby="basic-addon1"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <div className='p-4 text-center'>
+            <button type="submit" className='btn btn-info'>Sign Up</button>
+          </div>
+
+        </form> 
+      </div>
     </div>
   )
 }
