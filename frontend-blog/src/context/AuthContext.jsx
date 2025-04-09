@@ -16,11 +16,12 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  const login = async (input) => {
+  const login = async (input, setTok) => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}sessions`, input);
       console.log(response.data.token)
       setToken(response.data.token);
+      setTok(response.data.token)
       console.log(token)
       localStorage.setItem('token', token);
       navigate('/users')
@@ -33,13 +34,11 @@ export const AuthProvider = ({ children }) => {
     try {
       const header_token = localStorage.getItem('token')
       console.log(header_token)
+
+      console.log(axios.defaults)
       
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}logout`, {}, {
-        headers: {
-          Authorization: `Bearer ${header_token}`
-        }
-      })
-      
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}logout`)
+      console.log(response)
       if (response) {
         setToken(null)
         localStorage.removeItem('token');
@@ -48,7 +47,7 @@ export const AuthProvider = ({ children }) => {
       console.log(response)
     }
     catch(error) {
-      console.error('Login failed:', error);
+      console.error('Logout failed:', error);
     }
     
   };
