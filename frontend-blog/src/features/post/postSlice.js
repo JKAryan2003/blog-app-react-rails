@@ -12,12 +12,20 @@ export const fetchPosts = createAsyncThunk('post/fetchPosts', async () => {
   return response.data.posts;
 })
 
+export const createPosts = createAsyncThunk('post/createPosts', async (input) => {
+  const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/posts`, input)
+  return response.data;
+})
+
 
 const postSlice = createSlice({
   name: 'post',
   initialState,
   extraReducers: (builder) => {
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
+      state.posts = action.payload
+    }),
+    builder.addCase(createPosts.fulfilled, (state, action) => {
       state.posts = action.payload
     })
   }
