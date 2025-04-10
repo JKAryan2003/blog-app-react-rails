@@ -32,6 +32,7 @@ function App() {
             <Route path="/" element={<Home />} />
             {/* <Route path="/users" element={<Protected Component={Users} />}  /> */}
             <Route path='/posts' element={<Posts />} />
+            <Route path='/posts/new' element={<Posts />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LogIn setTok={setTok}/>} />
           </Routes>

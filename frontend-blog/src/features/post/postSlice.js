@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchPosts = createAsyncThunk('post/fetchPosts', async () => {
   const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/posts`)
-  return response.data;
+  return response.data.posts;
 })
 
 
