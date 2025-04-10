@@ -9,6 +9,7 @@ import { AuthProvider } from './context/AuthContext';
 import axios from 'axios';
 import { useState } from 'react';
 import Protected from './components/Protected';
+import Posts from './components/Posts';
 
 const setHeader = (token) => {
   if (token) {
@@ -18,6 +19,7 @@ const setHeader = (token) => {
     delete axios.defaults.headers.common['Authorization']
   }
 }
+
 function App() {
   const [token, setTok] = useState(localStorage.getItem('token'))
   setHeader(token)
@@ -28,7 +30,8 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/users" element={<Protected Component={Users} />}  />
+            {/* <Route path="/users" element={<Protected Component={Users} />}  /> */}
+            <Route path='/posts' element={<Posts />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LogIn setTok={setTok}/>} />
           </Routes>

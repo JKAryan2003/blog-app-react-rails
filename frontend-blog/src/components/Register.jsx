@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import './Login.css'
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -32,8 +33,8 @@ const Register = () => {
   return (
     <div className='d-flex flex-column align-items-center vw-100 vh-100'>
       <h2 className='p-5'>Sign Up</h2>
-      <div className='w-50 h-50 m-5 shadow p-5 bg-body-tertiary rounded'>
-        <form onSubmit={handleSubmit} className='d-flex flex-column '>
+      <div className='m-5 shadow formContainer  bg-body-tertiary rounded'>
+        <form onSubmit={handleSubmit} className='d-flex flex-column align-items-center'>
 
           <div className='p-4'>
             <input

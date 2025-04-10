@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthContext';
+import './Login.css'
 
 const LogIn = ({setTok}) => {
   const [email, setEmail] = useState('');
@@ -19,10 +20,10 @@ const LogIn = ({setTok}) => {
 
   return (
     <>
-      <div className='d-flex flex-column align-items-center vw-100 vh-100'>
+      <div className='d-flex flex-column align-items-center '>
         <h2 className='p-5'>Log In</h2>
-        <div className='w-50 h-50 m-5 shadow p-5 bg-body-tertiary rounded'>
-          <form onSubmit={handleSubmit} className='d-flex flex-column '>
+        <div className='formContainer m-5 shadow bg-body-tertiary rounded'>
+          <form onSubmit={handleSubmit} className='d-flex flex-column align-items-center'>
 
             <div className='p-4'>
               <input 
