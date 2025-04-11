@@ -13,6 +13,8 @@ Rails.application.routes.draw do
       resources :registrations
       resources :sessions
       post '/logout', to: 'sessions#logout'
+
+      resources :posts
     end
   end
 end
