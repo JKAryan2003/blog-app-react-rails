@@ -17,7 +17,7 @@ const Register = () => {
           password: password,
         }
       }
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}registrations`, input)
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/registrations`, input)
       console.log(response.data)
     }
     catch(error) {

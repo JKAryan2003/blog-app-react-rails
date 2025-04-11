@@ -10,6 +10,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import Protected from './components/Protected';
 import Posts from './components/Posts';
+import NewPost from './components/NewPost';
 
 const setHeader = (token) => {
   if (token) {
@@ -30,9 +31,8 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/users" element={<Protected Component={Users} />}  /> */}
             <Route path='/posts' element={<Posts />} />
-            <Route path='/posts/new' element={<Posts />} />
+            <Route path='/posts/new' element={<NewPost />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LogIn setTok={setTok}/>} />
           </Routes>
