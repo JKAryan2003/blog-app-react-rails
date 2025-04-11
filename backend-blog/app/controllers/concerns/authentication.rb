@@ -1,18 +1,22 @@
 module Authentication
   extend ActiveSupport::Concern
 
-  def delete_allowed_token(header)
-    class TokenError < StandardError 
-    end
+  class TokenError < StandardError; end
 
-    raise TokenError.new "No token Provided", status: :unauthorized unless header
+  def delete_allowed_token(header)
+    
+    raise TokenError.new "No Token Provided", status: :unauthorized unless header
 
     token = header.split(' ').last
+
     allowed_token = AllowList.find_by(token: token)
-    return render json: { error: 'Token not found' }, status: :unauthorized unless allowed_token
+    # binding.pry
+    raise TokenError.new "Token Not found", status: :unauthorized unless allowed_token
    
     allowed_token.destroy
     render json: { message: 'Logout successfully' }, status: :ok
+
+    
     
   end
 
