@@ -1,9 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
 import { createPosts } from '../features/post/postSlice'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const NewPost = () => {
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const handleSubmit = (e) => {
@@ -14,8 +18,8 @@ const NewPost = () => {
         content: content,
       }
     }
-
-    createPosts(input)
+    dispatch(createPosts(input))
+    navigate('/posts')
   }
   return (
     <div>

@@ -13,7 +13,9 @@ export const fetchPosts = createAsyncThunk('post/fetchPosts', async () => {
 })
 
 export const createPosts = createAsyncThunk('post/createPosts', async (input) => {
+  console.log("first")
   const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/posts`, input)
+  console.log(response)
   return response.data;
 })
 
