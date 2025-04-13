@@ -11,6 +11,7 @@ import { useState } from 'react';
 import Protected from './components/Protected';
 import Posts from './components/Posts';
 import NewPost from './components/NewPost';
+import ShowPost from './components/ShowPost';
 
 const setHeader = (token) => {
   if (token) {
@@ -33,9 +34,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LogIn setTok={setTok}/>} />
+
             <Route path='/posts' element={<Posts />} />
             <Route path='/posts/new' element={<NewPost />} />
-            
+            <Route path='/posts/:id' element={<ShowPost />}></Route>
           </Routes>
         </AuthProvider>
       </BrowserRouter>

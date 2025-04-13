@@ -4,7 +4,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   loading: false,
   posts: [],
-  createPost: {},
   error: ""
 }
 
@@ -28,6 +27,11 @@ export const updatePosts = createAsyncThunk('post/updatePosts', async (obj) => {
   return response.data
 })
 
+export const showPost = createAsyncThunk('post/showPost', async (id) => {
+  const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/${id}`)
+  return response.data
+})
+
 
 const postSlice = createSlice({
   name: 'post',
@@ -40,6 +44,9 @@ const postSlice = createSlice({
       state.createPost = action.payload
     }),
     builder.addCase(updatePosts.fulfilled, (state, action) => {
+      console.log(action.payload)
+    }),
+    builder.addCase(showPost.fulfilled, (state, action) => {
       console.log(action.payload)
     })
   }

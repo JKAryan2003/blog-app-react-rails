@@ -23,7 +23,7 @@ module Api
       end
 
       def update
-        post = Post.find_by(id: params[:id])
+        post
         return render json: { error: 'Post not found' }, status: :not_found unless post
 
         action_type = request.headers['Like-Dislike']
@@ -32,15 +32,27 @@ module Api
           post.update(like: post.like + 1)
         else
           post.update(like: post.like - 1)
-        end
-        # binding.pry  
+        end  
       end
+
+      def show
+        post
+        if post
+          render json: {post: post, message: "Post showing"}
+        else
+          render json: { error: 'Post not found' }, status: :not_found
+        end
+      end
+
       private
 
       def post_params
         params.require(:post).permit(:title, :content)
       end
 
+      def post
+        post ||= Post.find_by(id: params[:id])
+      end
     end
 
   end
