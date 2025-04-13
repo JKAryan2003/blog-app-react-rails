@@ -1,5 +1,5 @@
 import React from 'react'
-import { fetchPosts } from '../features/post/postSlice'
+import { fetchPosts } from '../../features/post/postSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import dayjs from 'dayjs'
@@ -16,7 +16,7 @@ const Posts = () => {
 
   useEffect(() => {
    dispatch(fetchPosts())
-  }, [posts])
+  }, [])
 
   return (
   

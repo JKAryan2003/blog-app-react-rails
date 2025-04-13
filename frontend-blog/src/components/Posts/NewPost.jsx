@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { createPosts } from '../features/post/postSlice'
+import { createPosts } from '../../features/post/postSlice'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 

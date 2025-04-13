@@ -1,18 +1,32 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { useParams } from 'react-router-dom'
+import { showPost } from '../../features/post/postSlice'
 
 dayjs.extend(relativeTime)
 
 const ShowPost = () => {
-  const post = useSelector((state) => state.post.posts[0  ])
+  const post = useSelector((state) => state.post.selectedPost)
+  console.log(post)
+  const dispatch = useDispatch()
+
+  const { id } = useParams()
+
+  useEffect(() => {
+    dispatch(showPost(id))
+  }, [id])
+  
   
   console.log(post)
   const [like, setLike] = useState(false)
   const handleLike = () => {
       setLike(!like)
+  }
+  if (!post) {
+    return <div className="text-center mt-5">Loading post...</div>
   }
   return (
     <>

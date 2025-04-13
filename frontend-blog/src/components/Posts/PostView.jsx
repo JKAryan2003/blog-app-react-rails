@@ -4,7 +4,7 @@ import { useState } from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { useDispatch } from 'react-redux'
-import { showPost, updatePosts } from '../features/post/postSlice'
+import { showPost, updatePosts } from '../../features/post/postSlice'
 import { Link } from 'react-router-dom'
 
 

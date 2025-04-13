@@ -38,7 +38,7 @@ module Api
       def show
         post
         if post
-          render json: {post: post, message: "Post showing"}
+          render json: {post: post, message: "Post showing"}, include: :user 
         else
           render json: { error: 'Post not found' }, status: :not_found
         end
