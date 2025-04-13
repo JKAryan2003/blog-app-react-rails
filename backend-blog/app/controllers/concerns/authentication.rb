@@ -9,6 +9,7 @@ module Authentication
 
     token = header.split(' ').last
 
+    # binding.pry                                                                                                                                                                                   
     allowed_token = AllowList.find_by(token: token)
     # binding.pry
     raise TokenError.new "Token Not found", status: :unauthorized unless allowed_token
@@ -16,8 +17,6 @@ module Authentication
     allowed_token.destroy
     render json: { message: 'Logout successfully' }, status: :ok
 
-    
-    
   end
 
   def authenticate_user!

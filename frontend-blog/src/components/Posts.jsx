@@ -5,6 +5,8 @@ import { useEffect } from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { Link } from 'react-router-dom'
+import './Post.css'
+import PostView from './PostView'
 
 dayjs.extend(relativeTime)
 
@@ -14,7 +16,7 @@ const Posts = () => {
 
   useEffect(() => {
    dispatch(fetchPosts())
-  }, [])
+  }, [posts])
 
   return (
   
@@ -28,19 +30,11 @@ const Posts = () => {
       
       <div className=''>
         {posts?.map((post) => 
-          <div className='p-5 m-5 shadow bg-body-tertiary rounded '>
-            <h2>{post.title}</h2>
-            <div className='d-flex py-2 text-secondary fs-6 justify-content-between'>
-              <span>{post.user.username}</span>
-              <span>{dayjs(post.created_at).fromNow()}</span>
-            </div>
-            <p>
-              {post.content}
-            </p>
-          </div>
+          <PostView post={post}/>
         )}
-        
       </div>
+
+     
     </div>
     
   )

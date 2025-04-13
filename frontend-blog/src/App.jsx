@@ -31,10 +31,11 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path='/posts' element={<Posts />} />
-            <Route path='/posts/new' element={<NewPost />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<LogIn setTok={setTok}/>} />
+            <Route path='/posts' element={<Posts />} />
+            <Route path='/posts/new' element={<NewPost />} />
+            
           </Routes>
         </AuthProvider>
       </BrowserRouter>
