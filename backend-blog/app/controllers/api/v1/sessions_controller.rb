@@ -24,6 +24,7 @@ module Api
             expires_at: expires_at
           )
 
+          # binding.pry
           render json: {user: @user, token: token, message: "Logged in successfully"}
         else
           render json: {errors: "Invalid Credentials"}, status: :unauthorized
