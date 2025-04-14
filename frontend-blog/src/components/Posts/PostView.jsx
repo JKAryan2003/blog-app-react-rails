@@ -13,6 +13,7 @@ dayjs.extend(relativeTime)
 const PostView = ({ post }) => {
   const dispatch = useDispatch()
   const [like, setLike] = useState(false)
+  
   const handleLike = (postId, type) => {
     console.log(type)
     setLike(!like)

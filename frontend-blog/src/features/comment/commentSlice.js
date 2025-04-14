@@ -9,6 +9,7 @@ const initialState = {
 
 export const fetchComments = createAsyncThunk('comment/fetchComments', async () => {
   const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/comments`)
+  console.log(response)
   return response.data;
 })
 
@@ -22,7 +23,8 @@ const commentSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(fetchComments.fulfilled, (state, action) => {
-      state.comments = action.payload.comments
+      console.log(action.payload)
+      state.comments = action.payload
     }),
     builder.addCase(addComment.fulfilled, (state, action) => {
       state.comment = action.payload

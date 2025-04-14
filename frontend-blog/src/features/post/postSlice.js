@@ -10,7 +10,7 @@ const initialState = {
 
 export const fetchPosts = createAsyncThunk('post/fetchPosts', async () => {
   const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/posts`)
-  return response.data.posts;
+  return response.data;
 })
 
 export const createPosts = createAsyncThunk('post/createPosts', async (input) => {
@@ -48,7 +48,7 @@ const postSlice = createSlice({
       console.log(action.payload)
     }),
     builder.addCase(showPost.fulfilled, (state, action) => {
-      state.selectedPost = action.payload.post
+      state.selectedPost = action.payload
     })
   }
 })

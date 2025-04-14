@@ -7,7 +7,7 @@ module Api
 
       def index 
         @comments = Comment.all
-        render json: {comments: @comments}, include: [:user, :post ]
+        render json: @comments, each_serializer: CommentSerializer
       end
 
       def create

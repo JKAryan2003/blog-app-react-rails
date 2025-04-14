@@ -7,7 +7,7 @@ module Api
 
       def index
         @posts = Post.all
-        render json: {posts: @posts}, include: :user 
+        render json: @posts, each_serializer: PostSerializer
       end
       
       def create
@@ -38,7 +38,7 @@ module Api
       def show
         post
         if post
-          render json: {post: post, message: "Post showing"}, include: :user 
+          render json: post, serializer: PostSerializer
         else
           render json: { error: 'Post not found' }, status: :not_found
         end

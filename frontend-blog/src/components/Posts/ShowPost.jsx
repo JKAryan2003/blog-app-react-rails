@@ -11,7 +11,11 @@ dayjs.extend(relativeTime)
 
 const ShowPost = () => {
   const post = useSelector((state) => state.post.selectedPost)
-  const comments = useSelector((state) => state.comment.comments)
+  const allComments = useSelector((state) => state.comment.comments)
+  console.log(allComments)
+  const comments = allComments.filter((comment) => 
+    comment.post.id === post.id
+  )
   const navigate = useNavigate()
   console.log(comments)
 
@@ -23,7 +27,7 @@ const ShowPost = () => {
   useEffect(() => {
     dispatch(showPost(id))
     dispatch(fetchComments())
-  }, [id])
+  }, [id, dispatch])
   
   
   console.log(post)

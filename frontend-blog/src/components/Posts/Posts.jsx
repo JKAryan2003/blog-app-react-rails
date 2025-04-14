@@ -13,7 +13,8 @@ dayjs.extend(relativeTime)
 const Posts = () => {
   const posts = useSelector((state) => state.post.posts)
   const dispatch = useDispatch()
-
+  console.log(posts)
+  
   useEffect(() => {
    dispatch(fetchPosts())
   }, [])
@@ -25,7 +26,7 @@ const Posts = () => {
         <h1 className=''>Posts</h1>
         <div>
           <Link to="/posts/new" className='btn btn-info'>New Post +</Link>
-        </div>
+        </div>  
       </div>
       
       <div className=''>
