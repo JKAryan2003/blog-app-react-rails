@@ -11,7 +11,6 @@ const MyPost = () => {
 
   const myPosts = useSelector((state) => state.post.myPosts)
 
-  console.log(myPosts)
   useEffect(() => {
     dispatch(fetchMyPosts(user_id))
   }, [user_id, dispatch])

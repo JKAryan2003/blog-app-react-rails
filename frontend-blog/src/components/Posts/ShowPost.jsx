@@ -67,35 +67,38 @@ const ShowPost = () => {
         </p>   
       </div>
 
-      <div className='fs-4 d-flex'>
+      <div className='fs-4 d-flex px-5'>
         <i class={like ? "fa-solid fa-heart pe-2 like" : "fa-regular fa-heart pe-2 "} 
           onClick={like ? () => handleLike(post.id, "unlike") : () => handleLike(post.id, "like")}></i>
         <i class="fa-regular fa-comment ps-2"></i>
       </div>
 
-      <div className='pt-3'>
+      <div className='px-5 pt-2'>
         <span className='text-secondary'>{post.like} likes</span>
       </div> 
 
-      <div>
-        <form onSubmit={(e) => handleSubmit(e, post.id)} className=''>
+      <div className='px-5 pt-3'>
+        <form onSubmit={(e) => handleSubmit(e, post.id)} className='d-flex'>
           <input 
             type="text"   
-            class="form-control" 
+            class="form-control w-25" 
             placeholder="Comment" 
             aria-label="Comment" aria-describedby="basic-addon1"
             value={comment}
             onChange={(e) => setComment(e.target.value)} 
           />
 
-          <button type='submit'>Add Comment</button>
+          <button type='submit' className='btn btn-success mx-5'>Add Comment</button>
         </form>
       </div>
 
       {comments.map((comment) => 
-        <div>
-          <span>{comment.content}</span>
-          <span>{comment.user.username}</span>
+        <div className='d-flex flex-column px-5 pt-3'>
+          <div className='px-2'>
+            <span className='text-secondary'>{comment.user.username.toLowerCase()}</span>
+            <span className='text-secondary px-3'>{dayjs(comment.created_at).fromNow()}</span>
+          </div>
+          <span className='px-2'>{comment.content}</span>
         </div>
       )}
     </>

@@ -13,8 +13,7 @@ dayjs.extend(relativeTime)
 const Posts = () => {
   const posts = useSelector((state) => state.post.posts)
   const dispatch = useDispatch()
-  console.log(posts)
-  
+
   useEffect(() => {
    dispatch(fetchPosts())
   }, [])

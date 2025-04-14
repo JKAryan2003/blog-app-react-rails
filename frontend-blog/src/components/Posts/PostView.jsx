@@ -13,7 +13,7 @@ dayjs.extend(relativeTime)
 const PostView = ({ post }) => {
   const dispatch = useDispatch()
   const [like, setLike] = useState(false)
-  
+
   const handleLike = (postId, type) => {
     console.log(type)
     setLike(!like)
@@ -42,13 +42,13 @@ const PostView = ({ post }) => {
         </div>
       </Link>
 
-      <div className='fs-4 d-flex'>
+      <div className='fs-4 d-flex px-5'>
         <i class={like ? "fa-solid fa-heart pe-2 like" : "fa-regular fa-heart pe-2 "} 
           onClick={like ? () => handleLike(post.id, "unlike") : () => handleLike(post.id, "like")}></i>
         <i class="fa-regular fa-comment ps-2"></i>
       </div>
 
-      <div className='pt-3'>
+      <div className='px-5'>
         <span className='text-secondary'>{post.like} likes</span>
       </div> 
     </>  
