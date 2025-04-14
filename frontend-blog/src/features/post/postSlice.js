@@ -38,6 +38,11 @@ export const fetchMyPosts = createAsyncThunk('post/fetchMyPosts', async (userId)
   return response.data
 })
 
+export const deletePost = createAsyncThunk('post/deletePost', async (id) => {
+  const response = await axios.delete(`${import.meta.env.VITE_BASE_URL}/posts/${id}`)
+  console.log(response)
+})
+
 const postSlice = createSlice({
   name: 'post',
   initialState,
@@ -56,7 +61,10 @@ const postSlice = createSlice({
     }),
     builder.addCase(fetchMyPosts.fulfilled, (state, action) => {
         state.myPosts = action.payload
-    })
+    }),
+    builder.addCase(deletePost.fulfilled, (state, action) => {
+      console.log(action.payload)
+  })
   }
 })
 

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       resources :sessions, only: [:create, :logout]
       post '/logout', to: 'sessions#logout'
 
-      resources :posts, only: [:index, :create, :update, :show]
+      resources :posts, only: [:index, :create, :update, :show, :destroy]
       resources :comments, only: [:index, :create]
 
       resources :users do
