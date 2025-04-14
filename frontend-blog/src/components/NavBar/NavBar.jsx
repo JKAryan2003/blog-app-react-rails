@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 const NavBar = () => {
-  const { token, logout } = useContext(AuthContext)
-
+  const { token, userId, logout } = useContext(AuthContext)
+  console.log(userId)
   const handleClick = () => {
     logout()
   }
@@ -28,6 +28,9 @@ const NavBar = () => {
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <Link to={`/users/${userId}/my_post`}>My Posts</Link>
                 </li>
                 <li class="nav-item">
                   <Link to="/posts" className='nav-link'>Posts</Link>
@@ -54,7 +57,10 @@ const NavBar = () => {
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                   </li>
                   <li class="nav-item">
-                    <Link to="/posts" className='nav-link'>Posts</Link>
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <Link to={`/users/${userId}/my_post`}>My Posts</Link>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

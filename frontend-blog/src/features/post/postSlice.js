@@ -4,6 +4,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   loading: false,
   posts: [],
+  myPosts: [],
   selectedPost: null,
   error: ""
 }
@@ -33,6 +34,12 @@ export const showPost = createAsyncThunk('post/showPost', async (id) => {
   return response.data
 })
 
+export const fetchMyPosts = createAsyncThunk('post/fetchMyPosts', async (userId) => {
+  console.log(userId)
+  const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/users/${userId}/my_post`)
+  console.log(response)
+  return response.data
+})
 
 const postSlice = createSlice({
   name: 'post',
@@ -49,6 +56,9 @@ const postSlice = createSlice({
     }),
     builder.addCase(showPost.fulfilled, (state, action) => {
       state.selectedPost = action.payload
+    }),
+    builder.addCase(fetchMyPosts.fulfilled, (state, action) => {
+        state.myPosts = action.payload
     })
   }
 })

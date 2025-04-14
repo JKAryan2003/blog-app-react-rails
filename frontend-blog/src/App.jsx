@@ -12,6 +12,7 @@ import Protected from './components/Protected';
 import Posts from './components/Posts/Posts';
 import NewPost from './components/Posts/NewPost';
 import ShowPost from './components/Posts/ShowPost';
+import MyPost from './components/Posts/MyPost';
 
 const setHeader = (token) => {
   if (token) {
@@ -38,6 +39,7 @@ function App() {
             <Route path='/posts' element={<Posts />} />
             <Route path='/posts/new' element={<NewPost />} />
             <Route path='/posts/:id' element={<ShowPost />}></Route>
+            <Route path="/users/:user_id/my_post" element={<MyPost />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>

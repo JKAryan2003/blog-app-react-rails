@@ -10,12 +10,16 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :registrations
-      resources :sessions
+      resources :registrations, only: [:index, :create] 
+      resources :sessions, only: [:create, :logout]
       post '/logout', to: 'sessions#logout'
 
-      resources :posts
-      resources :comments
+      resources :posts, only: [:index, :create, :update, :show]
+      resources :comments, only: [:index, :create]
+
+      resources :users do
+        get '/my_post', to: 'users#my_post' 
+      end
     end
   end
 end
