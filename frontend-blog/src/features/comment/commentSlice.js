@@ -22,7 +22,7 @@ const commentSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(fetchComments.fulfilled, (state, action) => {
-      state.comments = action.payload
+      state.comments = action.payload.comments
     }),
     builder.addCase(addComment.fulfilled, (state, action) => {
       state.comment = action.payload
