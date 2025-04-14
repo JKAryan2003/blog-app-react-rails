@@ -28,9 +28,6 @@
         const authToken = response.data.token
         const currentUserId = response.data.user.id
         const currentUserName = response.data.user.username
-
-        console.log(response)
-        console.log(authToken)
         setToken(authToken);
         setUserId(currentUserId)
         setUserName(currentUserName)
@@ -40,24 +37,19 @@
         console.error('Login failed:', error);
       }
     };
-
-    console.log(userId)
     const logout = async () => {
       try {
         const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/logout`)
-        console.log(response)
         if (response) {
           setToken(null)
           setUserId(null)
           setUserName(null)
           navigate('/login')
         }
-        console.log(response)
       }
       catch(error) {
         console.error('Logout failed:', error);
-      }
-      
+      } 
     };
 
     return (

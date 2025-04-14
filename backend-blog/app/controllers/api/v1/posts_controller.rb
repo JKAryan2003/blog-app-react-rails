@@ -44,6 +44,15 @@ module Api
         end
       end
 
+      def destroy
+        post
+        if post.destroy
+          render json: { message: 'Post deleted successfully' }, status: :ok
+        else
+          render json: { error: 'Unauthorized' }, status: :unauthorized
+        end
+      end
+
       private
 
       def post_params

@@ -20,7 +20,6 @@ export const createPosts = createAsyncThunk('post/createPosts', async (input) =>
 })
 
 export const updatePosts = createAsyncThunk('post/updatePosts', async (obj) => {
-  console.log(obj.type)
   const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/posts/${obj.postId}`, {}, {
     headers: {
       'Like-Dislike': obj.type
@@ -35,10 +34,13 @@ export const showPost = createAsyncThunk('post/showPost', async (id) => {
 })
 
 export const fetchMyPosts = createAsyncThunk('post/fetchMyPosts', async (userId) => {
-  console.log(userId)
   const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/users/${userId}/my_post`)
-  console.log(response)
   return response.data
+})
+
+export const deletePost = createAsyncThunk('post/deletePost', async (id) => {
+  const response = await axios.delete(`${import.meta.env.VITE_BASE_URL}/posts/${id}`)
+  console.log(response)
 })
 
 const postSlice = createSlice({
@@ -59,7 +61,10 @@ const postSlice = createSlice({
     }),
     builder.addCase(fetchMyPosts.fulfilled, (state, action) => {
         state.myPosts = action.payload
-    })
+    }),
+    builder.addCase(deletePost.fulfilled, (state, action) => {
+      console.log(action.payload)
+  })
   }
 })
 
