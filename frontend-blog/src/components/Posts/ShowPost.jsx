@@ -25,6 +25,16 @@ const ShowPost = () => {
   const handleLike = () => {
       setLike(!like)
   }
+
+  const [comment, setComment] = useState("")
+  const handleSubmit = (e) => {
+    e.preventDefault();
+      const input = {
+        comment: {
+          content: comment
+        }
+      }
+  }
   if (!post) {
     return <div className="text-center mt-5">Loading post...</div>
   }
@@ -50,6 +60,19 @@ const ShowPost = () => {
       <div className='pt-3'>
         <span className='text-secondary'>{post.like} likes</span>
       </div> 
+
+      <div>
+        <form onSubmit={handleSubmit} className=''>
+          <input 
+            type="text"   
+            class="form-control" 
+            placeholder="Comment" 
+            aria-label="Comment" aria-describedby="basic-addon1"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)} 
+          />
+        </form>
+      </div>
     </>
   )
 }
