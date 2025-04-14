@@ -1,17 +1,17 @@
 import './App.css'
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import Register from './components/Register';
-import LogIn from './components/LogIn';
+import NavBar from './components/NavBar/NavBar';
+import Register from './components/Authentication/Register';
+import LogIn from './components/Authentication/LogIn';
 import Home from './components/Home';
 import Users from './components/Users';
 import { AuthProvider } from './context/AuthContext';
 import axios from 'axios';
 import { useState } from 'react';
 import Protected from './components/Protected';
-import Posts from './components/Posts';
-import NewPost from './components/NewPost';
-import ShowPost from './components/ShowPost';
+import Posts from './components/Posts/Posts';
+import NewPost from './components/Posts/NewPost';
+import ShowPost from './components/Posts/ShowPost';
 
 const setHeader = (token) => {
   if (token) {

@@ -4,6 +4,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
   loading: false,
   posts: [],
+  selectedPost: null,
   error: ""
 }
 
@@ -47,7 +48,7 @@ const postSlice = createSlice({
       console.log(action.payload)
     }),
     builder.addCase(showPost.fulfilled, (state, action) => {
-      console.log(action.payload)
+      state.selectedPost = action.payload.post
     })
   }
 })
