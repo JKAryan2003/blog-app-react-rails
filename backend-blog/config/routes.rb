@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post '/logout', to: 'sessions#logout'
 
       resources :posts
+      resources :comments
     end
   end
 end
