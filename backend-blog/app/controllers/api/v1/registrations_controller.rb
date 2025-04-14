@@ -7,8 +7,8 @@ module Api
       before_action :authenticate_user!, only: [:index]
 
       def index
-        @users = User.all
-        render json: {users: @users}  
+        @users = User.all 
+        render json: @users, each_serializer: UserSerializer
       end
 
       def create

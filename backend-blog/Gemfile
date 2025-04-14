@@ -46,3 +46,4 @@ gem 'rack-cors'
 gem 'jwt'
 gem 'olive_branch'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'active_model_serializers'
