@@ -5,9 +5,12 @@ module Api
 
       include Authentication
 
+      before_action :authenticate_user!, only: [:create, :update, :like_dislike, :show, :destroy]
+
       def index
+        current_user = find_current_user
         @posts = Post.all
-        render json: @posts, each_serializer: PostSerializer
+        render json: @posts, current_user: current_user
       end
       
       def create
@@ -59,6 +62,20 @@ module Api
           render json: { message: 'Post deleted successfully' }, status: :ok
         else
           render json: { error: 'Unauthorized' }, status: :unauthorized
+        end
+      end
+
+      def delete_like
+        current_user_id = find_current_user.id
+        post_id = params[:post_id]
+        post = Post.find_by(id: post_id)
+        likes = post.likes.where(user_id: current_user_id)
+
+        if likes.exists?
+          likes.destroy_all
+          render json: { message: "Unliked" }
+        else
+          render json: { error: "Error" }
         end
       end
 

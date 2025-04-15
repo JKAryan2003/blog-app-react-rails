@@ -12,15 +12,17 @@ dayjs.extend(relativeTime)
 
 const Posts = () => {
   const posts = useSelector((state) => state.post.posts)
+  const error = useSelector((state) => state.post.error)
   const dispatch = useDispatch()
 
   useEffect(() => {
    dispatch(fetchPosts())
-  }, [])
+  }, [dispatch])
 
   return (
-  
+    
     <div className='d-flex flex-column'>
+      
       <div className='d-flex justify-content-between px-5 pt-5'>
         <h1 className=''>Posts</h1>
         <div>

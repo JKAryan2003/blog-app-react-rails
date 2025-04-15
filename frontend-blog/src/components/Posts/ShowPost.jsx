@@ -12,6 +12,7 @@ dayjs.extend(relativeTime)
 
 const ShowPost = () => {
   const post = useSelector((state) => state.post.selectedPost)
+  const error = useSelector((state) => state.post.error)
   const allComments = useSelector((state) => state.comment.comments)
   const comments = allComments.filter((comment) => 
     comment.post.id === post.id
@@ -54,6 +55,7 @@ const ShowPost = () => {
   }
   return (
     <>
+      {error && <div className="alert alert-danger">{error}</div>}
       <div className='p-5 m-5 shadow bg-body-tertiary rounded ' key={post.id}>
         <div>  
           <h2>{post.title}</h2>
