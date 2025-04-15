@@ -11,12 +11,19 @@ const initialState = {
 
 export const fetchPosts = createAsyncThunk('post/fetchPosts', async () => {
   const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/posts`)
+  console.log(response.data)
   return response.data;
 })
 
 export const createPosts = createAsyncThunk('post/createPosts', async (input) => {
-  const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/posts`, input)
-  return response.data;
+  try {
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/posts`, input)
+    return response.data;
+  } catch (err) {
+    console.error("Error creating posts")
+    throw err
+  }
+  
 })
 
 export const updatePosts = createAsyncThunk('post/updatePosts', async (obj) => {
@@ -34,12 +41,19 @@ export const editPosts = createAsyncThunk('post/editPosts', async (obj) => {
 })
 
 export const showPost = createAsyncThunk('post/showPost', async (id) => {
-  const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/${id}`)
-  return response.data
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/${id}`)
+    return response.data
+  } catch (err) {
+    console.log(err)
+    console.error("Error displaying posts")
+    throw err
+  }
 })
 
 export const fetchMyPosts = createAsyncThunk('post/fetchMyPosts', async (userId) => {
   const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/users/${userId}/my_post`)
+  
   return response.data
 })
 
@@ -57,6 +71,10 @@ const postSlice = createSlice({
     }),
     builder.addCase(createPosts.fulfilled, (state, action) => {
       state.createPost = action.payload
+    }),
+    builder.addCase(showPost.rejected, (state, action) => {
+      console.log(action.error)
+      state.error = action.error.message
     }),
     builder.addCase(updatePosts.fulfilled, (state, action) => {
       console.log(action.payload)

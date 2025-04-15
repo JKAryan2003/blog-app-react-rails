@@ -6,22 +6,40 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import { useDispatch } from 'react-redux'
 import { showPost, updatePosts } from '../../features/post/postSlice'
 import { Link } from 'react-router-dom'
+import { addLike, deleteLike } from '../../features/like/likeSlice'
 
 
 dayjs.extend(relativeTime)
 
 const PostView = ({ post }) => {
   const dispatch = useDispatch()
-  const [like, setLike] = useState(false)
+  const [like, setLike] = useState(post.liked_by_user)
+  const [likeCount, setLikeCount] = useState(post.like)
+  console.log(post.liked_by_user)
 
   const handleLike = (postId, type) => {
-    console.log(type)
-    setLike(!like)
-    dispatch(updatePosts({
-      postId: postId,
-      type: type
-    }))
+
+
+    if (type == 'like') {
+      dispatch(updatePosts({
+        postId: postId,
+        type: type
+      }))
+      dispatch(addLike(postId))
+      setLike(true)
+      setLikeCount(likeCount + 1)
+    }
+    else {
+      dispatch(updatePosts({
+        postId: postId,
+        type: type
+      }))
+      dispatch(deleteLike(postId))
+      setLike(false)
+      setLikeCount(likeCount - 1)
+    }
   }
+
 
   const handleShow = (id) => {
     dispatch(showPost(id))
@@ -49,7 +67,7 @@ const PostView = ({ post }) => {
       </div>
 
       <div className='px-5'>
-        <span className='text-secondary'>{post.like} likes</span>
+        <span className='text-secondary'>{likeCount} likes</span>
       </div> 
     </>  
     

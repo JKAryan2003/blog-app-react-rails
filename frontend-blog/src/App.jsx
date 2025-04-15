@@ -4,7 +4,6 @@ import NavBar from './components/NavBar/NavBar';
 import Register from './components/Authentication/Register';
 import LogIn from './components/Authentication/LogIn';
 import Home from './components/Home';
-import Users from './components/Users';
 import { AuthProvider } from './context/AuthContext';
 import axios from 'axios';
 import { useState } from 'react';
