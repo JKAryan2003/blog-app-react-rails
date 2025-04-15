@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { useNavigate, useParams } from 'react-router-dom'
-import { deletePost, showPost } from '../../features/post/postSlice'
+import { showPost } from '../../features/post/postSlice'
 import { addComment, fetchComments } from '../../features/comment/commentSlice'
-import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 
 dayjs.extend(relativeTime)
@@ -14,7 +13,6 @@ dayjs.extend(relativeTime)
 const ShowPost = () => {
   const post = useSelector((state) => state.post.selectedPost)
   const allComments = useSelector((state) => state.comment.comments)
-  const { userId } = useContext(AuthContext)
   const comments = allComments.filter((comment) => 
     comment.post.id === post.id
   )
@@ -51,44 +49,14 @@ const ShowPost = () => {
     
   }
 
-  const handleDelete = (id) => {
-    const confrimDelete = confirm("Are you sure you want to delete")
-    if (confrimDelete){
-      dispatch(deletePost(id))
-      navigate('/posts')
-    }
-    
-  }
-
-  const handleEdit = () => {
-
-  }
-
   if (!post) {
     return <div className="text-center mt-5">Loading post...</div>
   }
   return (
     <>
       <div className='p-5 m-5 shadow bg-body-tertiary rounded ' key={post.id}>
-        <div>
-          
-          {
-            post.user.id == userId ? 
-             (
-              
-              <div className='d-flex justify-content-between'>
-                <h2>{post.title}</h2>
-                <div className='d-flex'>
-                  <i className="fa-solid fa-pen px-3 fs-4 text-info" onClick={() => handleEdit(post.id)}></i>
-                  <i className="fa-solid fa-trash fs-4 text-danger" onClick={() => handleDelete(post.id)}></i>
-                </div>
-              </div>
-             )
-             :
-             (
-              <h2>{post.title}</h2>
-             )
-          }
+        <div>  
+          <h2>{post.title}</h2>
         </div>
         
         <div className='d-flex py-2 text-secondary fs-6 justify-content-between'>

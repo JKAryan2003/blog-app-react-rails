@@ -28,6 +28,11 @@ export const updatePosts = createAsyncThunk('post/updatePosts', async (obj) => {
   return response.data
 })
 
+export const editPosts = createAsyncThunk('post/editPosts', async (obj) => {
+  const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/posts/${obj.postId}`, obj.post)
+  return response.data
+})
+
 export const showPost = createAsyncThunk('post/showPost', async (id) => {
   const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/${id}`)
   return response.data
@@ -54,6 +59,9 @@ const postSlice = createSlice({
       state.createPost = action.payload
     }),
     builder.addCase(updatePosts.fulfilled, (state, action) => {
+      console.log(action.payload)
+    }),
+    builder.addCase(editPosts.fulfilled, (state, action) => {
       console.log(action.payload)
     }),
     builder.addCase(showPost.fulfilled, (state, action) => {

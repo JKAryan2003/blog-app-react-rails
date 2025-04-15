@@ -23,7 +23,12 @@ module Api
       end
 
       def update
-       
+        post
+        if post.update(post_params)
+          render json: post, status: :ok
+        else
+          render json: { error: post.errors.full_messages }, status: :unprocessable_entity
+        end
       end
 
       def like_dislike
