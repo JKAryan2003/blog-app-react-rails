@@ -8,9 +8,9 @@ module Api
       before_action :authenticate_user!, only: [:create, :update, :like_dislike, :show, :destroy]
 
       def index
-        current_user = find_current_user
+        # current_user = find_current_user
         @posts = Post.all
-        render json: @posts, current_user: current_user
+        render json: @posts
       end
       
       def create
