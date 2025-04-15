@@ -24,6 +24,15 @@ module Api
 
       def update
         post
+        if post.update(post_params)
+          render json: post, status: :ok
+        else
+          render json: { error: post.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
+      def like_dislike
+        post
         return render json: { error: 'Post not found' }, status: :not_found unless post
 
         action_type = request.headers['Like-Dislike']

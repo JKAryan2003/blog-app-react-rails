@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post '/logout', to: 'sessions#logout'
 
       resources :posts, only: [:index, :create, :update, :show, :destroy]
+      patch '/like_dislike/:id', to: 'posts#like_dislike'
       resources :comments, only: [:index, :create]
 
       resources :users do

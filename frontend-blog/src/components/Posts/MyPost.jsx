@@ -19,7 +19,7 @@ const MyPost = () => {
     <div>
       <div className='d-flex flex-column'>
       <div className='d-flex justify-content-between px-5 pt-5'>
-        <h1 className=''>Posts</h1>
+        <h1 className=''>My Posts</h1>
         <div>
           <Link to="/posts/new" className='btn btn-info'>New Post +</Link>
         </div>  
