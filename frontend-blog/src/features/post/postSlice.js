@@ -20,7 +20,7 @@ export const createPosts = createAsyncThunk('post/createPosts', async (input) =>
 })
 
 export const updatePosts = createAsyncThunk('post/updatePosts', async (obj) => {
-  const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/posts/${obj.postId}`, {}, {
+  const response = await axios.patch(`${import.meta.env.VITE_BASE_URL}/like_dislike/${obj.postId}`, {}, {
     headers: {
       'Like-Dislike': obj.type
     }

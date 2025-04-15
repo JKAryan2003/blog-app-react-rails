@@ -23,6 +23,10 @@ module Api
       end
 
       def update
+       
+      end
+
+      def like_dislike
         post
         return render json: { error: 'Post not found' }, status: :not_found unless post
 
