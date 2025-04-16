@@ -48,7 +48,7 @@ const PostView = ({ post }) => {
   return (
     <>
       <Link to={`/posts/${post.id}`} className='nav-link' onClick={() => handleShow(post.id)}>
-        <div className='p-5 m-5 shadow bg-body-tertiary rounded ' key={post.id}>
+        <div className='p-5 mx-5 mt-1 shadow bg-body-tertiary rounded ' key={post.id}>
           <h2>{post.title}</h2>
           <div className='d-flex py-2 text-secondary fs-6 justify-content-between'>
             <span>{post.user.username}</span>
@@ -60,7 +60,7 @@ const PostView = ({ post }) => {
         </div>
       </Link>
 
-      <div className='fs-4 d-flex px-5'>
+      <div className='fs-4 d-flex px-5 py-2'>
         <i class={like ? "fa-solid fa-heart pe-2 like" : "fa-regular fa-heart pe-2 "} 
           onClick={like ? () => handleLike(post.id, "unlike") : () => handleLike(post.id, "like")}></i>
         <i class="fa-regular fa-comment ps-2"></i>

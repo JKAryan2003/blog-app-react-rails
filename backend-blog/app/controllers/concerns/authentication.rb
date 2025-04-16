@@ -17,6 +17,12 @@ module Authentication
 
   end
 
+  def is_token_passed?
+    header = request.headers['Authorization']
+    return false if header.blank?
+    return true
+  end
+
   def authenticate_user!
     find_header
     decode_token
